@@ -61,7 +61,7 @@ rails generate devise User
 
 ```
 # Add the full name attribute to the User model
-rails generate migration AddFullNameToUsers fullName:string
+rails generate migration AddFullNameToUsers full_name:string
 
 # Questions:
 # 1. Why do we need to run the command `rails generate migration AddFullNameToUsers fullName:string`?
