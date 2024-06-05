@@ -8,15 +8,16 @@
 # 3. When might you choose to use a merge commit over a rebase or squash?
 # 4. How can merge conflicts be resolved in Git?
 # 5. What is a fast-forward merge, and when is it used?
+# 6. Research and compare image of merge vs rebase
 ```
 
 ### Step 1: Fetch the Latest Changes from Main Branch
 ```
 # Ensure your local repository is up-to-date with the remote repository:
-git fetch origin main
+git fetch origin
 
 # Questions:
-# 1. What is the purpose of `git fetch origin main`?
+# 1. What is the purpose of `git fetch origin`?
 # 2. How does `git fetch` differ from `git pull`?
 # 3. What happens if you skip this step before merging?
 ```
