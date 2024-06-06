@@ -26,8 +26,15 @@ end
 
 ### Step 2: Define the Test for the UpdateUser Mutation
 ```
-# Open the existing file `spec/requests/user_mutations_spec.rb` and add the following content:
 
+# generate the spec
+rails generate rspec:request auth/user_update
+
+# Replace generated file with:
+
+require 'rails_helper'
+
+RSpec.describe "Auth::UpdateUser", type: :request do
   describe 'updateUser mutation' do
     let(:user) { create(:user) }
     
@@ -97,6 +104,7 @@ end
       )
     end
   end
+end
 
 # Questions:
 # 1. How does FactoryBot help in setting up test data?
@@ -109,8 +117,6 @@ end
 ### Step 3: Run the Tests
 ```
 # In your terminal, run the tests using the following command:
-bundle exec rspec spec/requests/user_mutations_spec.rb
-or
 bundle exec rspec
 ```
 

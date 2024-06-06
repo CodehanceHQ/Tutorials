@@ -1,9 +1,15 @@
-# User Unit Testing
+# SignIn Unit Testing
 
 ### Step 1: Define the Test for the SignIn Mutation
 ```
-# Open the existing file `spec/requests/user_mutations_spec.rb` and add the following content:
+# generate the spec
+rails generate rspec:request auth/sign_in
 
+# Replace generated file with:
+
+require 'rails_helper'
+
+RSpec.describe "Auth::SignIn", type: :request do
   describe 'signIn mutation' do
     let(:user) { create(:user, password: 'Password@123') }
     
@@ -63,6 +69,7 @@
       expect(data['errors']).to include('Invalid email or password')
     end
   end
+end
 
 # Questions:
 # 1. How does FactoryBot simplify test data creation?

@@ -1,11 +1,11 @@
-# User Unit Testing
+# SignUp Unit Testing
 
 ### Step 1: Generate the Request Spec File
 ```
 # Step-by-Step Guide for Testing the UserMutation with RSpec
 
 # In your terminal, run the following command to generate the request spec file:
-rails generate rspec:request user_mutations
+rails generate rspec:request auth/sign_up
 
 # Questions:
 # 1. What command do you use to generate an RSpec request spec file?
@@ -16,11 +16,11 @@ rails generate rspec:request user_mutations
 
 ### Step 2: Define the Test for the SignUp Mutation
 ```
-# Open the generated file `spec/requests/user_mutations_spec.rb` and replace with content:
+# Open the generated spec file and replace with content:
 
 require 'rails_helper'
 
-RSpec.describe 'UserMutations', type: :request do
+RSpec.describe "Auth::SignUp", type: :request do
   describe 'signUp mutation' do
     let(:query) do
       <<~GQL
@@ -97,6 +97,7 @@ RSpec.describe 'UserMutations', type: :request do
   end
 end
 
+
 # Questions:
 # 1. What is the purpose of the `let` block in RSpec?
 # 2. What does the `post` method do in the context of this test?
@@ -109,8 +110,6 @@ end
 ### Step 3: Run the Tests
 ```
 # In your terminal, run the tests using the following command:
-bundle exec rspec spec/requests/user_mutations_spec.rb
-or
 bundle exec rspec
 
 # Questions:
