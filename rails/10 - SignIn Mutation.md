@@ -45,7 +45,7 @@ module Types
   end
 end
 
-# Questions::
+# Questions:
 # 1. What does adding the `signIn` field to the MutationType class accomplish?
 # 2. What error do we get when we re-run the signIn mutation?
 # 3. What does `"message": "uninitialized constant Mutations::UserMutations::SignIn"` mean?

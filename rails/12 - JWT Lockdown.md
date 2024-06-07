@@ -8,6 +8,8 @@
 
 # frozen_string_literal: true
 
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   before_action :authenticate_user!, unless: -> { graphql_authentication_action? }
 
@@ -15,9 +17,12 @@ class GraphqlController < ApplicationController
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+    token = request.headers['Authorization']&.split(' ')&.last
+
     context = {
       current_user: set_current_user,
-      jwt_token: request.headers['Authorization']&.split(' ')&.last
+      jwt_token: token,
+      jwt_payload: decode_jwt_payload(token)
     }
 
     result = RailsApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
@@ -37,7 +42,7 @@ class GraphqlController < ApplicationController
     end
 
     begin
-      jwt_payload = JWT.decode(token, Rails.application.credentials.jwt_secret_key).first
+      jwt_payload = decode_jwt_payload(token)
       @current_user = User.find(jwt_payload['sub'])
     rescue JWT::DecodeError
       render json: { error: 'Invalid token' }, status: :unauthorized
@@ -51,11 +56,17 @@ class GraphqlController < ApplicationController
     return nil unless token
 
     begin
-      jwt_payload = JWT.decode(token, Rails.application.credentials.jwt_secret_key).first
+      jwt_payload = decode_jwt_payload(token)
       User.find(jwt_payload['sub'])
     rescue JWT::DecodeError, ActiveRecord::RecordNotFound
       nil
     end
+  end
+
+  def decode_jwt_payload(token)
+    JWT.decode(token, Rails.application.credentials.jwt_secret_key).first
+  rescue JWT::DecodeError
+    nil
   end
 
   def graphql_authentication_action?
@@ -450,7 +461,6 @@ mutation {
 Now run the query mutation
 
 # Questions:
-# 1: Why do we make the request with token sent in the header?
+# 1: Why did we make the request with token sent in the header?
 # 2: What error will you see without the header being sent?
-
 ```

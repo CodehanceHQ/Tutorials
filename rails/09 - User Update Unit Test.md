@@ -21,7 +21,7 @@ end
 # Question 2: What is faker and how does it work?
 # Question 3: What other types of faker fields are there?
 # Question 4: Does faker give same data each time it is called?
-# Question 5: Are we able to pass our own data to Factory bot?
+# Question 5: Are we able to pass our own data to Factory bot e.g name: John Smith?
 ```
 
 ### Step 2: Define the Test for the UpdateUser Mutation
