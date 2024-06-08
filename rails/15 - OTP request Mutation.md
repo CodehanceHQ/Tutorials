@@ -96,6 +96,8 @@ class OtpRequest < Mutations::BaseMutation
       expires_at = Time.now + 30.minutes
       # Save OTP to the database
       Otp.create(user: user, otp_code: otp_code, expires_at: expires_at)
+      # Send OTP to user email
+      UserMailer.otp_email(user, otp_code).deliver_now
       {
         data: user,
         errors: [],
@@ -121,6 +123,7 @@ end
 # 5: How do we find the user to save this against?
 # 6: What happens when user not found?
 # 7: What error do we get when we run this mutation query? and why?
+# 8: What is used for sending mail to the user?
 ```
 
 ### Step 5: Fixing Unauthorized error
@@ -168,5 +171,6 @@ mutation {
   }
 }
 
-# Now we have response! and data is stored in our postgres database.
+# Now we have response! and data is stored in our postgres database and we also
+# send email to the user with an OTP.
 ```
