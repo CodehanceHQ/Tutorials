@@ -8,8 +8,6 @@
 
 # frozen_string_literal: true
 
-# frozen_string_literal: true
-
 class GraphqlController < ApplicationController
   before_action :authenticate_user!, unless: -> { graphql_authentication_action? }
 
@@ -25,7 +23,7 @@ class GraphqlController < ApplicationController
       jwt_payload: decode_jwt_payload(token)
     }
 
-    result = RailsApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    result = DealSourcingApiSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e
     raise e unless Rails.env.development?
@@ -37,7 +35,7 @@ class GraphqlController < ApplicationController
   def authenticate_user!
     token = request.headers['Authorization']&.split(' ')&.last
     unless token
-      render json: { error: 'Unauthorized' }, status: :unauthorized
+      render json: error_structure('Unauthorized', 401), status: :unauthorized
       return
     end
 
@@ -45,9 +43,9 @@ class GraphqlController < ApplicationController
       jwt_payload = decode_jwt_payload(token)
       @current_user = User.find(jwt_payload['sub'])
     rescue JWT::DecodeError
-      render json: { error: 'Invalid token' }, status: :unauthorized
+      render json: error_structure('Invalid token', 401), status: :unauthorized
     rescue ActiveRecord::RecordNotFound
-      render json: { error: 'User not found' }, status: :unauthorized
+      render json: error_structure('User not found', 401), status: :unauthorized
     end
   end
 
@@ -63,6 +61,15 @@ class GraphqlController < ApplicationController
     end
   end
 
+  def error_structure(error, status)
+    {
+      'data' => nil,
+      'errors' => [error],
+      'message' => error,
+      'httpStatus' => status
+    }
+  end
+
   def decode_jwt_payload(token)
     JWT.decode(token, Rails.application.credentials.jwt_secret_key).first
   rescue JWT::DecodeError
@@ -70,7 +77,7 @@ class GraphqlController < ApplicationController
   end
 
   def graphql_authentication_action?
-    sign_up_query? || sign_in_query?
+    sign_up_query? || sign_in_query? || otp_query?
   end
 
   def sign_up_query?
@@ -79,6 +86,10 @@ class GraphqlController < ApplicationController
 
   def sign_in_query?
     params[:query]&.include?('signIn')
+  end
+
+  def otp_query?
+    params[:query]&.include?('otpRequest')
   end
 
   def prepare_variables(variables_param)
