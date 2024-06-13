@@ -24,7 +24,37 @@ rails new my_api_app --api -d postgresql --skip-test
 # 3. Why use `--skip-test` when generating Rails if we plan to use RSpec?
 ```
 
-### Create the database
+### Step 2: Database variables
+```
+# Replace config/database.yml with:
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV["POSTGRES_USER"] || "postgres" %>
+  password: <%= ENV["POSTGRES_PASSWORD"] || "postgres" %>
+  host: <%= ENV["POSTGRES_HOST"] || "localhost" %>
+
+development:
+  <<: *default
+  database: <%= ENV["POSTGRES_DATABASE"] || "deal_sourcing_api_development" %>
+
+test:
+  <<: *default
+  database: <%= ENV["POSTGRES_TEST_DATABASE"] || "deal_sourcing_api_test" %>
+
+production:
+  <<: *default
+  database: <%= ENV["POSTGRES_PRODUCTION_DATABASE"] %>
+
+
+# Questions:
+# 1: What is the purpose of `default` above?
+# 2: Why do we set the env. variables?
+```
+
+### Step 3: Create the database
 ```
 rails db:create
 
@@ -33,7 +63,7 @@ rails db:create
 # 2. Why do we need those databases?
 ```
 
-### Step 2: Configure Environment-Specific Settings
+### Step 4: Configure Environment-Specific Settings
 ```
 # config/environments/development.rb
 Rails.application.configure do
@@ -66,7 +96,7 @@ end
 # 3. What protocol is set for the production environment?
 ```
 
-### Step 3: Start the Server
+### Step 5: Start the Server
 ```
 # Start the server to run your Rails application
 rails server
