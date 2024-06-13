@@ -40,6 +40,9 @@ git status
 gh auth login
 
 # create a pull request
+=======
+git status
+gh auth login
 gh pr create --base main --title "DEAL-20 Feature name here" --body "Adding new feature"
 ```
 
