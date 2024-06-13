@@ -81,11 +81,6 @@ alias gm='git merge'
 # Example usage:
 # gm branch-to-merge
 
-# Delete a local branch
-alias gbd='git branch -d'
-# Example usage:
-# gbd branch-name
-
 # Delete a remote branch
 alias gbdr='git push origin --delete'
 # Example usage:
@@ -147,6 +142,15 @@ alias gacpu='function _gacpu(){ current_branch=$(git symbolic-ref --short HEAD);
 alias gpm='function _gpm(){ current_branch=$(git symbolic-ref --short HEAD); git checkout main && git pull && git checkout "$current_branch" && git merge main; }; _gpm'
 # Example usage:
 # gpm
+
+# Function to remove the current branch by checking out to main, then removing the branch and pulling from main
+alias gbd='function _gbd(){
+    current_branch=$(git symbolic-ref --short HEAD);
+    name=${1:-$current_branch}
+    git checkout main && git pull && git branch -d "$current_branch";
+}; _gbd'
+# Example usage:
+# gbd branch-name or gbd (this deletes current branch)
 ```
 
 ### Step 4: Reload your (dot) file
