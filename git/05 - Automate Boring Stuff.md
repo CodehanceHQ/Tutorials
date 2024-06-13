@@ -137,4 +137,9 @@ alias gpo='function _gpo(){ current_branch=$(git symbolic-ref --short HEAD); git
 alias gacp='function _gacp(){ current_branch=$(git symbolic-ref --short HEAD); git add . && git commit -m "$1" && git push origin "$current_branch"; }; _gacp'
 # Example usage:
 # gacp "Your commit message"
+
+# Function to pull from origin main into feature branch
+alias gpm='function _gpm(){ current_branch=$(git symbolic-ref --short HEAD); git checkout main && git pull && git checkout "$current_branch" && git merge main; }; _gpm'
+# Example usage:
+# gpm
 ```
