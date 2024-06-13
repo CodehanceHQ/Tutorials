@@ -25,7 +25,7 @@ code ~/.zshrc
 code ~/.config/fish/config.fish
 ```
 
-### Step 3: Copy these andd add to bottom of file
+### Step 3: Copy these and add to bottom of file
 ```
 # ===============================================
 # Git aliases
@@ -147,4 +147,16 @@ alias gacpu='function _gacpu(){ current_branch=$(git symbolic-ref --short HEAD);
 alias gpm='function _gpm(){ current_branch=$(git symbolic-ref --short HEAD); git checkout main && git pull && git checkout "$current_branch" && git merge main; }; _gpm'
 # Example usage:
 # gpm
+```
+
+### Step 4: Reload your (dot) file
+```
+# For Zsh
+source ~/.zshrc
+
+# For Bash
+source ~/.bashrc
+
+# For Fish
+source ~/.config/fish/config.fish
 ```
