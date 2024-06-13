@@ -18,8 +18,10 @@ git status
 git push
 ```
 
-### Intiate on Github
+### Intiate on Github OR Terminal
 ```
+# github process:
+
 # In github click on:
 Pull requests > New Pull Request  
 
@@ -28,13 +30,13 @@ compare: main ( drop down )
 
 # click
 Create Pull Request 
-```
 
-### Initiate directly from terminal like a boss!
-##### you do need to install gh `https://github.com/cli/cli`
-```
-# make sure no uncommited changes
-git status
+# ========== OR ========== 
+
+# terminal process:
+
+# install (gh cli)
+https://github.com/cli/cli
 
 # login to gh
 gh auth login
@@ -42,8 +44,6 @@ gh auth login
 # create pull request
 gh pr create --base main --title "DEAL-20 Feature name here" --body "Adding new feature"
 ```
-
-
 
 ### Questions
 ```
