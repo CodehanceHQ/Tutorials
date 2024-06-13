@@ -33,8 +33,16 @@ Create Pull Request
 ### Initiate directly from terminal like a boss!
 ##### you do need to install gh `https://github.com/cli/cli`
 ```
+# make sure no uncommited changes
 git status
+
+# login to gh
 gh auth login
+
+# login to gh
+gh auth login
+
+# create pull request
 gh pr create --base main --title "DEAL-20 Feature name here" --body "Adding new feature"
 ```
 
@@ -45,5 +53,5 @@ gh pr create --base main --title "DEAL-20 Feature name here" --body "Adding new 
 # 1: How did we integrate work from main branch into the feature branch?
 # 2: Why is it important to pull main into feature branch?
 # 3: Why might conflicts arise from pulling main into feature branch?
-# 4: 
+# 4: How do you install `gh` command for github?
 ```
