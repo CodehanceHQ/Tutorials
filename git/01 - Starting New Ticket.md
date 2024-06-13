@@ -20,6 +20,9 @@ git pull
 
 # Create your feature branch
 git checkout -b DEAL-20-name-of-fature-here
+
+# Setup your upstream ( local branch will track remote )
+git push -u origin DEAL-20-name-of-fature-here
 ```
 
 ### Questions
@@ -58,4 +61,8 @@ git checkout -b DEAL-20-name-of-fature-here
 
 ```
 #9: Why check status before git pull?
+```
+
+```
+#10: Why did we set the upstream? 
 ```
