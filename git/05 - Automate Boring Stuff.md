@@ -77,14 +77,14 @@ alias gm='git merge'
 # gm branch-to-merge
 
 # Delete a local branch
-alias grb='git branch -d'
+alias gbd='git branch -d'
 # Example usage:
-# grb branch-name
+# gbd branch-name
 
 # Delete a remote branch
-alias grbr='git push origin --delete'
+alias gbdr='git push origin --delete'
 # Example usage:
-# grbr branch-name
+# gbdr branch-name
 
 # Fetch changes from the remote repository
 alias gf='git fetch'
@@ -118,30 +118,23 @@ alias gacp='function _gacp(){ git add . && git commit -m "$1" && git push };_gac
 # Example usage:
 # gacp "Your commit message"
 
-# Function to create a GitHub pull request with a title and body
-alias gpr='function _gpr(){ gh pr create --base main --title "$1" --body "$1" };_gpr'
+# Function to create a GitHub pull request with title and body derived from the branch name
+alias gpr='function _gpr(){
+    current_branch=$(git symbolic-ref --short HEAD);
+    body=${1:-$current_branch}
+    gh pr create --base main --title "$current_branch" --body "$body";
+}; _gpr'
+
 # Example usage:
-# gpr "PR title" "PR body"
+# gpr "PR what you did" or gpr
 
-# Function to push to origin and set upstream
-alias gpo='function _gpo(){ git push origin -u "$1" };_gpo'
+# Function to push to origin and set upstream for the current branch
+alias gpo='function _gpo(){ current_branch=$(git symbolic-ref --short HEAD); git push origin -u "$current_branch"; }; _gpo'
 # Example usage:
-# gpo branch-name
+# gpo
 
-```
-
-### Step 4: Reload / Refresh (dot) file
-```
-# For Bash
-source ~/.bashrc
-
-# For Zsh
-source ~/.zshrc
-
-# For Fish
-source ~/.config/fish/config.fish
-```
-
-### Example usage
-```
+# Function to add commit and push origin all in one
+alias gacp='function _gacp(){ current_branch=$(git symbolic-ref --short HEAD); git add . && git commit -m "$1" && git push origin "$current_branch"; }; _gacp'
+# Example usage:
+# gacp "Your commit message"
 ```
