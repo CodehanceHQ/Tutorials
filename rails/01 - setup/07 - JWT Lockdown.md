@@ -77,7 +77,7 @@ class GraphqlController < ApplicationController
   end
 
   def graphql_authentication_action?
-    sign_up_query? || sign_in_query? || otp_query?
+    sign_up_query? || sign_in_query? || otp_query? || reset_password_query?
   end
 
   def sign_up_query?
@@ -90,6 +90,10 @@ class GraphqlController < ApplicationController
 
   def otp_query?
     params[:query]&.include?('otpRequest')
+  end
+
+  def reset_password_query?
+    params[:query]&.include?('resetPassword')
   end
 
   def prepare_variables(variables_param)

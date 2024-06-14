@@ -29,9 +29,7 @@ mutation {
 
 ### Step 2: Create mutatble type
 ```
-touch app/graphql/mutations/user_mutations/logout.rb
-
-# path: app/graphql/mutations/user_mutations/logout.rb
+# app/graphql/types/mutation_type.rb
 
 module Types
   class MutationType < Types::BaseObject
