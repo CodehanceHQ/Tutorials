@@ -1,30 +1,6 @@
 # Logout Unit Testing
 
-### Understanding TDD
-```
-# Questions:
-# 1: Explain TDD ( Test Driven Development )
-# 2: In TDD What is the Red / Green process
-# 3: What do we gain by writing the test case first in TDD?
-# 4: What does test cases help us prevent?
-# 5: In TDD which comes first, Spec file or Logout Mutation?
-```
-
-### Step 1: Planning your test
-```
-# Questions:
-# 1: After studying previous tests, what structure would your logout test be?
-# 2: Will it need a user created from factory bot?
-# 3: Will you need to create a query mutation as in SignUp spec?
-# 4: Would you need argument? 
-# 5: Would you need return types? what would they be?
-# 6: Would you need a header? what would it contain?
-# 7: How would you test against logging out twice?
-# 8: How would you test for successful logout?
-# 9: How would you test the format of returned type?
-```
-
-### Step 2: Define the Test for the SignIn Mutation
+### Step 1: Logout Spec
 ```
 # generate the spec
 rails generate rspec:request auth/logout
@@ -136,14 +112,8 @@ RSpec.describe "Auth::Logouts", type: :request do
 end
 ```
 
-### Step 3: Run the spec
+### Step 2: Run the spec
 ```
 # run:
 rspec spec/requests/auth/logouts_spec.rb
-
-# Questions:
-# 1: How many test examples did you have?
-# 2: How many failing tests?
-# 3: What stage in TDD's [Red, Green] are we in right now?
-# 4: What did you learn new here compared to the previous tests?
 ```

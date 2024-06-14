@@ -29,7 +29,9 @@ mutation {
 
 ### Step 2: Create mutatble type
 ```
-# app/graphql/types/mutation_type.rb
+touch app/graphql/mutations/user_mutations/logout.rb
+
+# path: app/graphql/mutations/user_mutations/logout.rb
 
 module Types
   class MutationType < Types::BaseObject
@@ -74,43 +76,49 @@ rails db:migrate
 
 ### Step 4: Create OTP Mutation
 ```
-# copy this into user_mutations.rb
+touch app/graphql/mutations/user_mutations/otp_request.rb
 
-class OtpRequest < Mutations::BaseMutation
-  # Define the input arguments for the mutation
-  argument :email, String, required: true
+# path: app/graphql/mutations/user_mutations/otp_request.rb
 
-  # Define the return types for the mutation
-  field :data, Types::UserType, null: true
-  field :errors, [String], null: true
-  field :message, String, null: false 
-  field :http_status, Integer, null: false
+module Mutations
+  module UserMutations
+    class OtpRequest < Mutations::BaseMutation
+      # Define the input arguments for the mutation
+      argument :email, String, required: true
 
-  def resolve(email:)
-    user = User.find_by(email: email)
+      # Define the return types for the mutation
+      field :data, Types::UserType, null: true
+      field :errors, [String], null: true
+      field :message, String, null: false 
+      field :http_status, Integer, null: false
 
-    if user
-      # Generate random 5-digit OTP
-      otp_code = rand.to_s[2..5]
-      # Set OTP expiry time to 30 minutes
-      expires_at = Time.now + 30.minutes
-      # Save OTP to the database
-      Otp.create(user: user, otp_code: otp_code, expires_at: expires_at)
-      # Send OTP to user email
-      UserMailer.otp_email(user, otp_code).deliver_now
-      {
-        data: user,
-        errors: [],
-        message: "OTP sent successfully",
-        http_status: 200 # OK
-      }
-    else
-      {
-        data: nil,
-        errors: ["User not found"],
-        message: "User not found",
-        http_status: 404 # Not Found
-      }
+      def resolve(email:)
+        user = User.find_by(email: email)
+
+        if user
+          # Generate random 5-digit OTP
+          otp_code = rand.to_s[2..5]
+          # Set OTP expiry time to 30 minutes
+          expires_at = Time.now + 30.minutes
+          # Save OTP to the database
+          Otp.create(user: user, otp_code: otp_code, expires_at: expires_at)
+          # Send OTP to user email
+          UserMailer.otp_email(user, otp_code).deliver_now
+          {
+            data: user,
+            errors: [],
+            message: "OTP sent successfully",
+            http_status: 200 # OK
+          }
+        else
+          {
+            data: nil,
+            errors: ["User not found"],
+            message: "User not found",
+            http_status: 404 # Not Found
+          }
+        end
+      end
     end
   end
 end

@@ -67,9 +67,10 @@ end
 
 ### Step 3: Create SignUp mutation
 ```
-touch app/graphql/mutations/user_mutations.rb
+mkdir app/graphql/mutations/user_mutations
+touch app/graphql/mutations/user_mutations/sign_up.rb
 
-# path: app/graphql/mutations/user_mutations.rb
+# path: app/graphql/mutations/user_mutations/sign_up.rb
 
 module Mutations
   module UserMutations

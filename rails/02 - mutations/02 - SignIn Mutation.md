@@ -54,11 +54,12 @@ end
 
 ### Step 3: Create SignIn mutation
 ```
-# path: app/graphql/mutations/user_mutations.rb
+touch app/graphql/mutations/user_mutations/sign_in.rb
+
+# path: app/graphql/mutations/user_mutations/sign_in.rb
 
 module Mutations
   module UserMutations
-    # ... existing type class
     class SignIn < Mutations::BaseMutation
       # Define the input arguments for the mutation
       argument :email, String, required: true

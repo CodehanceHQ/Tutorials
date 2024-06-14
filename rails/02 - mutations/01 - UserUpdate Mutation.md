@@ -56,11 +56,12 @@ end
 
 ### Step 3: Create UpdateUser mutation
 ```
-# path: app/graphql/mutations/user_mutations.rb
+touch app/graphql/mutations/user_mutations/update_user.rb
+
+# path: app/graphql/mutations/user_mutations/update_user.rb
 
 module Mutations
   module UserMutations
-    # ... existing type class
     class UpdateUser < Mutations::BaseMutation
       # Define the input arguments for the mutation
       argument :id, ID, required: true
