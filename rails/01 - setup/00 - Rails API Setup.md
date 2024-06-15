@@ -96,6 +96,52 @@ end
 # 3. What protocol is set for the production environment?
 ```
 
+### Step 5: Replace Gemfile
+```
+source "https://rubygems.org"
+
+ruby "3.3.1"
+
+# Core Gems
+gem "rails", "~> 7.1.3", ">= 7.1.3.3"
+gem "pg", "~> 1.1"  # Use PostgreSQL as the database for Active Record
+gem "puma", ">= 5.0"  # Use the Puma web server
+
+# Authentication
+gem 'devise', '~> 4.8'
+gem 'devise-jwt', '~> 0.11.0'
+
+# GraphQL
+gem 'graphql', '~> 2.3', '>= 2.3.2'
+gem 'graphiql-rails', '~> 1.7', group: :development
+
+# Email
+gem 'postmark-rails', '~> 0.22.1'
+
+# Utility
+gem "tzinfo-data", platforms: %i[ windows jruby ]  # Windows time zone data
+gem "bootsnap", require: false  # Reduces boot times through caching
+
+# Asset Pipeline
+gem 'propshaft', '~> 0.9.0', group: :development
+
+# Development and Test Gems
+group :development, :test do
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
+  gem 'database_cleaner-active_record', '~> 2.1'
+  gem 'faker', '~> 3.4', '>= 3.4.1'
+  gem 'simplecov', '~> 0.22.0', require: false
+  gem 'dotenv-rails', '~> 3.1', '>= 3.1.2'
+  gem "debug", platforms: %i[ mri windows ]  # Debugging tools
+end
+
+group :development do
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
+end
+```
+
 ### Step 5: Start the Server
 ```
 # Start the server to run your Rails application
