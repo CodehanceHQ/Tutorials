@@ -116,15 +116,11 @@ export class HomePage implements OnInit {
 
 ### src/app/pages/home/home.page.html
 ```
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="custom-header">
+    <h1>Home</h1>
+  </div>
+
   <p>Welcome to the Home Page!</p>
 </ion-content>
 
