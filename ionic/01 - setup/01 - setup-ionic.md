@@ -3,6 +3,7 @@
 ```
 ionic start myApp blank --type=angular --capacitor
 
+npm install -g @angular/cli
 
 # Questions:
 # 1. What does the `ionic start` command do?

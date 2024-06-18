@@ -85,6 +85,11 @@ ion-content {
     margin: 0;
   }
 }
+
+.error-message {
+  color: red;
+  margin-left: 15px;
+}
 ```
 
 ### src/app/app-routing.module.ts
