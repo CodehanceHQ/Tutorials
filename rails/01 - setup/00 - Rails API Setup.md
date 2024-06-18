@@ -96,16 +96,34 @@ end
 # 3. What protocol is set for the production environment?
 ```
 
+### cors
+```
+# config/initializers/cors.rb
+
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    if Rails.env.development?
+      origins 'http://localhost:8100', 'http://127.0.0.1:8100' # Development origins
+    elsif Rails.env.production?
+      origins 'https://your-production-domain.com' # Production origins
+    end
+
+    resource '*',
+             headers: :any,
+             methods: %i[get post put patch delete options head],
+             credentials: true
+  end
+end
+```
+
 ### Step 5: Replace Gemfile
 ```
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby "3.3.1"
+ruby '3.3.1'
 
 # Core Gems
-gem "rails", "~> 7.1.3", ">= 7.1.3.3"
-gem "pg", "~> 1.1"  # Use PostgreSQL as the database for Active Record
-gem "puma", ">= 5.0"  # Use the Puma web server
+gem 'rails', '~> 7.1.3', '>= 7.1.3.3'
 
 # Authentication
 gem 'devise', '~> 4.8'
@@ -113,34 +131,44 @@ gem 'devise-jwt', '~> 0.11.0'
 
 # GraphQL
 gem 'graphql', '~> 2.3', '>= 2.3.2'
-gem 'graphiql-rails', '~> 1.7', group: :development
 
 # Email
 gem 'postmark-rails', '~> 0.22.1'
 
 # Utility
-gem "tzinfo-data", platforms: %i[ windows jruby ]  # Windows time zone data
-gem "bootsnap", require: false  # Reduces boot times through caching
+gem 'bootsnap', require: false # Reduces boot times through caching
+gem 'tzinfo-data', platforms: %i[windows jruby] # Windows time zone data
 
 # Asset Pipeline
 gem 'propshaft', '~> 0.9.0', group: :development
 
+# CORS
+gem 'rack-cors', '~> 2.0', '>= 2.0.2'
+
+# Production Gems
+group :production do
+  gem 'pg', '~> 1.1'
+  gem 'puma', '>= 5.0'
+end
+
 # Development and Test Gems
 group :development, :test do
-  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
-  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
   gem 'database_cleaner-active_record', '~> 2.1'
-  gem 'faker', '~> 3.4', '>= 3.4.1'
-  gem 'simplecov', '~> 0.22.0', require: false
+  gem 'debug', platforms: %i[mri windows] # Debugging tools
   gem 'dotenv-rails', '~> 3.1', '>= 3.1.2'
-  gem "debug", platforms: %i[ mri windows ]  # Debugging tools
+  gem 'factory_bot_rails', '~> 6.4', '>= 6.4.3'
+  gem 'faker', '~> 3.4', '>= 3.4.1'
+  gem 'graphiql-rails', '~> 1.7'
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
+  gem 'simplecov', '~> 0.22.0', require: false
+  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'rubocop', '~> 1.64', '>= 1.64.1'
   gem 'rubocop-rails', '~> 2.25'
 end
+
 ```
 
 ### Step 5: Start the Server

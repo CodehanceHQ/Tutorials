@@ -1,10 +1,11 @@
 ## Check Gemfile for Rufo
 
 ```
-# In your Gemfile, add Rufo to the development group for Ruby formatting
+# In your Gemfile, add if not already there
 
 group :development do
-  gem 'rufo', '~> 0.18.0' # Ruby formatter
+  gem 'rubocop-rails', '~> 2.25'
+  gem 'rubocop', '~> 1.64', '>= 1.64.1'
 end
 ```
 
@@ -17,24 +18,18 @@ end
 bundle install
 ```
 
-## VSCode settings
-
+## .vscode
 ```
-Open VSCode settings by pressing Cmd + , on macOS or Ctrl + , on Windows/Linux.
-```
+mkdir .vscode
+touch .vscode/settings.json
 
-## Open settings.json
-
-```
-Click on the file icon in the top right corner to open the settings.json file.
-```
-
-## Add the following settings
-
-```
-"ruby.format": "rufo",
-"[ruby]": {
-    "editor.defaultFormatter": "jnbt.vscode-rufo",
+{
+  "ruby.format": "rubocop",
+  "ruby.lint": {
+    "rubocop": true
+  },
+  "[ruby]": {
+    "editor.defaultFormatter": "misogi.ruby-rubocop",
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
     "editor.tabSize": 2,
@@ -43,13 +38,72 @@ Click on the file icon in the top right corner to open the settings.json file.
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "editor.rulers": [120],
-    "editor.semanticHighlighting.enabled": true
+    "editor.semanticHighlighting.enabled": true,
   }
+}
 ```
 
 ## Search and Install VSCode Extensions
 
 ```
 Install Ruby LSP by shopify
-Install Rufo - Ruby formatter by jnbt
+Install ruby-rubocop by misogi
+```
+
+## .rubocop.yml file ( root of project )
+```
+# The AllCops section applies settings globally.
+AllCops:
+  Exclude:
+    - 'db/schema.rb' # Exclude schema file from linting.
+    - 'bin/*'
+    - 'config/**/*'
+    - 'spec/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'coverage/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    
+  TargetRubyVersion: 3.3.1 # Set the target Ruby version for your project.
+  NewCops: enable
+
+# Style settings for different cops (Style, Layout, etc.)
+Layout/LineLength:
+  Max: 100 # Set max line length to 100 characters.
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb' # Exclude spec files from block length cop.
+
+# Enable or disable specific cops.
+Lint/UnusedMethodArgument:
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+# Define settings for Rails projects using rubocop-rails.
+require: rubocop-rails
+
+Rails/SkipsModelValidations:
+  Enabled: true
+
+# Configure new cops
+Gemspec/DeprecatedAttributeAssignment:
+  Enabled: true
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+```
+
+## Run rubocop on a particular file
+```
+# shows you issues to fix
+rubocop app/controllers/graphql_controller.rb
+
+# auto fixes issues
+rubocop -A app/controllers/graphql_controller.rb
 ```

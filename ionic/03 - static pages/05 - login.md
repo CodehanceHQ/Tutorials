@@ -1,10 +1,11 @@
+### Generate a new page for the login
 ```
-// Generate a new page for the login
-ionic generate page login
+ionic generate page pages/login
+```
 
-// src/app/login/login.page.ts
-
-// This page handles the logic for the login.
+### src/app/pages/login/login.page.ts
+```
+# This page handles the logic for the login.
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -24,12 +25,14 @@ export class LoginPage implements OnInit {
   }
 }
 
-// Questions:
-// 1. What functionality would be implemented in the `onLogin` method later?
+# Questions:
+# 1. What functionality would be implemented in the `onLogin` method later?
+```
 
-// src/app/login/login.page.html
+### src/app/pages/login/login.page.html
+```
+# This template defines the structure of the login page.
 
-<!-- This template defines the structure of the login page. -->
 <ion-header>
   <ion-toolbar>
     <ion-title>Login</ion-title>
@@ -74,20 +77,19 @@ export class LoginPage implements OnInit {
   </ion-grid>
 </ion-content>
 
-<!-- Questions: -->
-<!-- 1. Explain `ion-grid`, `ion-row`, and `ion-col` components in this template? -->
+# Questions:
+# 1. Explain `ion-grid`, `ion-row`, and `ion-col` components in this template?
+```
 
-
-// src/app/login/login.page.scss
-
-/* This file contains the styles for the login page. */
+### src/app/pages/login/login.page.scss
+```
 ion-header {
-  --background: #f8f8f8; /* Set background color for the header */
+  --background: #f8f8f8;
 }
 
 ion-toolbar {
-  --background: #3880ff; /* Set background color for the toolbar */
-  --color: #fff; /* Set text color for the toolbar */
+  --background: #3880ff;
+  --color: #fff;
 }
 
 form {
@@ -128,20 +130,24 @@ ion-label a {
   text-decoration: none;
   color: #3880ff;
   font-weight: bold;
-  white-space: nowrap; /* Ensure the link text stays on one line */
+  white-space: nowrap;
 }
 
 .no-padding {
-  padding: 0; /* Remove default padding to better align the text */
+  padding: 0;
 }
+```
 
-// src/app/app-routing.module.ts
-
-// Add below to right locations in app-routing.module.ts if not already there
-// We want path: '' to redirect to login page.
+### src/app/app-routing.module.ts
+```
+# Add below to right locations in app-routing.module.ts if not already there
+# We want path: '' to redirect to login page.
 
 { path: '', redirectTo: 'login', pathMatch: 'full' },
-{ path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule) },
+{ path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule) },
+```
 
-// Run the app to see the login page
+### Run the app to see the login page
+```
 ionic serve
+```
