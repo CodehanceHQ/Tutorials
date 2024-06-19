@@ -77,11 +77,15 @@ class GraphqlController < ApplicationController
   end
 
   def graphql_authentication_action?
-    sign_up_query? || sign_in_query? || otp_query? || reset_password_query?
+    sign_up_query? || sign_in_query? || otp_query? || reset_password_query? || create_log?
   end
 
   def sign_up_query?
     params[:query]&.include?('signUp')
+  end
+
+  def create_log?
+    params[:query]&.include?('createLog')
   end
 
   def sign_in_query?

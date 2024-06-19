@@ -34,6 +34,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
+  backendErrors: string[] = [];
   signUpForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -77,6 +78,12 @@ export class SignupPage implements OnInit {
 <ion-content>
   <div class="custom-header">
     <h1>Sign Up</h1>
+  </div>
+
+  <div *ngIf="backendErrors.length > 0">
+    <ul>
+      <li *ngFor="let error of backendErrors">{{ error }}</li>
+    </ul>
   </div>
 
   <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
@@ -133,4 +140,20 @@ export class SignupPage implements OnInit {
 # 3: What does `[disabled]="signUpForm.invalid"` do?
 # 4: What is `*ngIf` used above?
 # 5: Where where is telephone in here `signUpForm.get('telephone')` defined?
+```
+
+###
+```
+http://localhost:8102/signup
+
+# fill in the form correctly and inspect element on page to view result.
+
+# data is logged by signup.page.ts:
+
+onSubmit() {
+  if (this.signUpForm.valid) {
+    console.log(this.signUpForm.value);
+    // Handle the form submission logic here
+  }
+}
 ```
