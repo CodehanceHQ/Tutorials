@@ -113,6 +113,26 @@ class User < ApplicationRecord
 end
 ```
 
+### Run migration
 ```
 rails db:migrate
+```
+
+### Test mutation
+```
+mutation {
+  createLog(input: {
+    level: "error",
+    message: "Failed to sign up2",
+    timestamp: "2024-06-19T06:00:45.867Z",
+    data: {
+      stack: "Error: Simulated signup error",
+      name: "Error",
+      message: "Simulated signup error"
+    }
+  }) {
+    status
+    message
+  }
+}
 ```
