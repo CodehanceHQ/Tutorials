@@ -142,7 +142,7 @@ export class SignupPage implements OnInit {
 # 5: Where where is telephone in here `signUpForm.get('telephone')` defined?
 ```
 
-###
+### submit form
 ```
 http://localhost:8102/signup
 
@@ -150,10 +150,5 @@ http://localhost:8102/signup
 
 # data is logged by signup.page.ts:
 
-onSubmit() {
-  if (this.signUpForm.valid) {
-    console.log(this.signUpForm.value);
-    // Handle the form submission logic here
-  }
-}
+console log to view output.
 ```
