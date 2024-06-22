@@ -59,13 +59,13 @@ ionic generate component components/side-menu
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-label>Link 1</ion-label>
+        <ion-label>Profile</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Link 2</ion-label>
+        <ion-label>Settings</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Link 3</ion-label>
+        <ion-label>Logout</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -41,6 +41,7 @@ export class SignupPage implements OnInit {
           if (response.errors && response.errors.length > 0) {
             this.backendErrors = response.errors;
           } else {
+            this.signUpForm.reset(); // Clear form data
             this.router.navigate(['/login']);
           }
         }),

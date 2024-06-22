@@ -62,31 +62,27 @@ Login with a real user's details and due to the console log we placed in onSubmi
 ```
 
 ### Save Token
-##### update login.page.ts
+##### update login.page.ts replace onSubmit():
 ```
-...
-import { Storage } from '@ionic/storage-angular';
-
-...
-export class LoginPage implements OnInit {
-  ...
-  constructor(
-    ...
-    private storage: Storage // Inject Ionic Storage
-  ) {...}
-
-  onSubmit() {
-    if (this.signInForm.valid) {
-      ...
-      if (response.errors && response.errors.length > 0) {
-        ...
-      } else {
-        // Save the token into Ionic Storage
-        this.storage.set('authToken', response.token);  // Store the token
-        ...
-      }
-      ...
-    }
+onSubmit() {
+  if (this.signInForm.valid) {
+    this.signinService.signIn(this.signInForm.value).pipe(
+      tap(response => {
+        console.log('response', response);
+        if (response.errors && response.errors.length > 0) {
+          this.backendErrors = response.errors;
+        } else {
+          // The token is automatically stored in the SigninService
+          this.signInForm.reset(); // Clear form data
+          this.router.navigate(['/home']);
+        }
+      }),
+      catchError(error => {
+        // Error is logged at service level
+        this.backendErrors.push('Oops! Something went wrong. Please try again later.');
+        return of(null);
+      })
+    ).subscribe();
   }
 }
 ```
