@@ -116,6 +116,29 @@ Imagine we have a `UserProfile` class that represents a user profile in an appli
 #### Creating an Object
 When we create a new user profile, we are creating an instance of the `UserProfile` class. For example, a user profile with the username "johnDoe" and email "john@example.com" is an object created from the `UserProfile` class.
 
+### Constructor Methods
+A constructor method is a special method that is automatically called when an object is created from a class. Its primary purpose is to initialize the object's properties. In Ionic Angular, the constructor is defined using the `constructor` keyword inside the class definition.
+
+#### Example
+Consider the `UserProfile` class. The constructor method initializes the properties `username`, `email`, `age`, and `isLoggedIn` when a new `UserProfile` object is created.
+
+```
+export class UserProfile {
+  // Properties of the class
+  username: string;
+  email: string;
+  age: number;
+  isLoggedIn: boolean;
+
+  // Constructor to initialize the properties
+  constructor(username: string, email: string, age: number) {
+    this.username = username;
+    this.email = email;
+    this.age = age;
+    this.isLoggedIn = false; // Default value
+  }
+}
+```
 
 ### Test Questions
 
@@ -136,9 +159,6 @@ When we create a new user profile, we are creating an instance of the `UserProfi
    
 6. **How do you access and modify the properties of an object?**
    - Provide examples of accessing and modifying properties of a `UserProfile` object.
-   
-7. **What is the difference between instance methods and static methods in a class?**
-   - Explain the difference between these two types of methods and give an example of each (you can create hypothetical methods if not covered in the provided class).
 
 
 ### Summary
