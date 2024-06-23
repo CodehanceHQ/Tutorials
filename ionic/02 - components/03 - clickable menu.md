@@ -65,7 +65,7 @@ ionic generate component components/side-menu
         <ion-label>Settings</ion-label>
       </ion-item>
       <ion-item>
-        <ion-label>Logout</ion-label>
+        <ion-label name="logout">Logout</ion-label>
       </ion-item>
     </ion-list>
   </ion-content>

@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LogoutService } from '../services/auth/logout.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-side-menu',
@@ -13,13 +14,16 @@ export class SideMenuComponent implements OnInit {
 
   constructor(
     private logoutService: LogoutService, 
-    private router: Router
+    private router: Router,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {}
 
   async onLogout() {
     await this.logoutService.logout();
+    // close the menu
+    this.menu.close('first');
     this.router.navigate(['/signin']);
   }
 }
