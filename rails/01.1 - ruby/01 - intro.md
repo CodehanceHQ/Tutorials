@@ -16,6 +16,7 @@ touch main.rb
 ```
 
 **Edit the user_profile.rb class**:
+In this step, we are defining the `UserProfile` class in the `user_profile.rb` file. This class includes properties such as `username`, `email`, `age`, and `is_logged_in` which are initialized through a constructor method. The class also contains methods to manipulate these properties: `login` sets `is_logged_in` to true, `logout` sets it to false, and `update_email` changes the user's email to a new value. By defining this class, we create a blueprint for user profile objects that encapsulates user data and behaviors.
 ```
 # user_profile.rb
 
@@ -48,7 +49,10 @@ class UserProfile
   end
 end
 ```
-**Edit the main.rb file**
+
+**Edit the main.rb file**:
+In this step, we are editing the `main.rb` file to test the functionality of the `UserProfile` class. We start by requiring the `user_profile.rb` file to access the `UserProfile` class. We then create an instance of `UserProfile` with initial values for `username`, `email`, and `age`. We demonstrate accessing the object's properties and printing them to the console. Next, we call the `login` method to change the `is_logged_in` property to true and print the updated value. We update the user's email using the `update_email` method and print the new email. Finally, we call the `logout` method to set `is_logged_in` to false and print the updated state. This script helps us verify that the `UserProfile` class and its methods work as expected.
+
 ```
 # main.rb
 
@@ -76,6 +80,7 @@ puts "Logged In after logout: #{user.is_logged_in}" # Output: false
 ```
 
 **Run the main.rb**:
+In you terminal root of this project run:
 ```
 ruby main.rb
 ```
