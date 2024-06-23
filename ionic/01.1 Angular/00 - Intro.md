@@ -1,6 +1,5 @@
 ## Understanding Classes in Ionic Angular: A Beginner's Guide
 
-
 ### Introduction
 Welcome to the course! In this lesson, we will explore the fundamental concepts of classes, methods, properties, and objects in Ionic Angular. By the end of this tutorial, you will understand how each component works and how they are used in Angular development.
 
@@ -10,15 +9,20 @@ First, ensure that any Ionic app you may have running is stopped.
 ### Classes
 Classes are blueprints for creating objects. They encapsulate data for the object and methods to manipulate that data. In Ionic Angular, classes help in structuring your code by defining reusable components.
 
+#### Example
+Consider a `UserProfile` class. This class defines the structure and behavior of user profiles in your application. It might include properties like `username`, `email`, and `age`, and methods like `login`, `logout`, and `updateEmail`. When you create an object from this class, such as a specific user's profile, the object will have its own `username`, `email`, and `age`, and can use the defined methods to perform actions like logging in or updating the email address.
+
 ### Methods
-Methods are functions defined within a class that describe the behaviors of an object. They allow objects to perform actions. There are different types of methods:
-- **Instance Methods**: Operate on an instance of the class.
-- **Static Methods**: Operate on the class itself, not on instances.
+Methods are functions defined within a class that describe the behaviors of an object. They allow objects to perform actions. 
+
+#### Example
+In the `UserProfile` exmaple, methods would be things like `login`, `logout`, and `updateEmail`.
 
 ### Properties
-Properties are variables that hold data associated with a class and its objects. They define the characteristics of an object. There are different types of properties:
-- **Instance Properties**: Belong to an instance of the class.
-- **Static Properties**: Belong to the class itself, not any instance.
+Properties are variables that hold data associated with a class and its objects. They define the characteristics of an object.
+
+#### Example
+Example property would be those things that make up a UserProfile, its fields such as:  `username`, `email`, and `age`.
 
 ### Objects
 Objects are instances of a class. They represent real-world entities and are created using the class blueprint. An object has its own unique values for the properties defined by the class.
