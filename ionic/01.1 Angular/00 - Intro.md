@@ -12,11 +12,61 @@ Classes are blueprints for creating objects. They encapsulate data for the objec
 #### Example
 Consider a `UserProfile` class. This class defines the structure and behavior of user profiles in your application. It might include properties like `username`, `email`, and `age`, and methods like `login`, `logout`, and `updateEmail`. When you create an object from this class, such as a specific user's profile, the object will have its own `username`, `email`, and `age`, and can use the defined methods to perform actions like logging in or updating the email address.
 
+```
+export class UserProfile {
+  // Properties of the class
+  username: string;
+  email: string;
+  age: number;
+  isLoggedIn: boolean;
+
+  // Constructor to initialize the properties
+  constructor(username: string, email: string, age: number) {
+    this.username = username;
+    this.email = email;
+    this.age = age;
+    this.isLoggedIn = false; // Default value
+  }
+
+  // Method to log in the user
+  login() {
+    this.isLoggedIn = true;
+  }
+
+  // Method to log out the user
+  logout() {
+    this.isLoggedIn = false;
+  }
+
+  // Method to update the email
+  updateEmail(newEmail: string) {
+    this.email = newEmail;
+  }
+}
+```
+
 ### Methods
 Methods are functions defined within a class that describe the behaviors of an object. They allow objects to perform actions. 
 
 #### Example
 In the `UserProfile` exmaple, methods would be things like `login`, `logout`, and `updateEmail`.
+
+```
+// Method to log in the user
+login() {
+  this.isLoggedIn = true;
+}
+
+// Method to log out the user
+logout() {
+  this.isLoggedIn = false;
+}
+
+// Method to update the email
+updateEmail(newEmail: string) {
+  this.email = newEmail;
+}
+```
 
 ### Properties
 Properties are variables that hold data associated with a class and its objects. They define the characteristics of an object.
@@ -24,8 +74,27 @@ Properties are variables that hold data associated with a class and its objects.
 #### Example
 Example property would be those things that make up a UserProfile, its fields such as:  `username`, `email`, and `age`.
 
+```
+// Properties of the class
+username: string;
+email: string;
+age: number;
+isLoggedIn: boolean;
+```
+
 ### Objects
 Objects are instances of a class. They represent real-world entities and are created using the class blueprint. An object has its own unique values for the properties defined by the class.
+
+```
+// Create a `john` object from the UserProfile class
+const john = new UserProfile('johnDoe', 'john@example.com', 30);
+
+// Accessing properties of the object
+console.log(john.username); // Output: johnDoe
+console.log(john.email); // Output: john@example.com
+console.log(john.age); // Output: 30
+console.log(john.isLoggedIn); // Output: false
+```
 
 ### Practical Example (Theoretical Explanation)
 Let's consider a theoretical example to illustrate these concepts:
