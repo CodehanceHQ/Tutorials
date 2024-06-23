@@ -96,7 +96,10 @@ For example, if you have a `UserProfile` class, you can create multiple instance
 In the `main.rb` file, we create an instance of the `UserProfile` class:
 
 ```
-user = UserProfile.new('johnDoe', 'john@example.com', 30)
+# john and jane here are the instances
+
+john = UserProfile.new('johnDoe', 'john@example.com', 30)
+jane = UserProfile.new('janeDoe', 'jane@example.com', 34)
 ```
 
 **Run the main.rb**:
@@ -104,3 +107,17 @@ In you terminal root of this project run:
 ```
 ruby main.rb
 ```
+
+### Test Questions
+
+1. **What is the purpose of the `initialize` method in the `UserProfile` class?**
+   - Explain what the `initialize` method does and how it is used when creating an instance of the class.
+
+2. **How do you create an instance of the `UserProfile` class? Provide an example.**
+   - Describe the steps to create an instance and give an example using the `UserProfile` class.
+
+3. **What are the properties defined in the `UserProfile` class, and how are they initialized?**
+   - List the properties in the `UserProfile` class and explain how they are set up in the constructor.
+
+4. **How do you call a method on an instance of the `UserProfile` class? Provide an example using the `login` method.**
+   - Explain the process of calling a method on an instance and give an example with the `login` method.
