@@ -116,5 +116,30 @@ Imagine we have a `UserProfile` class that represents a user profile in an appli
 #### Creating an Object
 When we create a new user profile, we are creating an instance of the `UserProfile` class. For example, a user profile with the username "johnDoe" and email "john@example.com" is an object created from the `UserProfile` class.
 
+
+### Test Questions
+
+1. **What is a class in the context of Ionic Angular?**
+   - Explain the role of a class in structuring your code.
+   
+2. **What are properties in a class? Provide an example.**
+   - Describe what properties are and give an example from the `UserProfile` class.
+   
+3. **What are methods in a class? Provide an example.**
+   - Explain what methods are and provide an example from the `UserProfile` class.
+   
+4. **How do you create an object from a class?**
+   - Describe the steps to create an object using the `UserProfile` class as an example.
+   
+5. **What is the purpose of the constructor method in a class?**
+   - Explain why a constructor is used in a class and what it initializes.
+   
+6. **How do you access and modify the properties of an object?**
+   - Provide examples of accessing and modifying properties of a `UserProfile` object.
+   
+7. **What is the difference between instance methods and static methods in a class?**
+   - Explain the difference between these two types of methods and give an example of each (you can create hypothetical methods if not covered in the provided class).
+
+
 ### Summary
 In this lesson, we've covered the basic concepts of classes, methods, properties, and objects in Ionic Angular. These are fundamental building blocks that will help you understand how to structure and organize your code effectively.
