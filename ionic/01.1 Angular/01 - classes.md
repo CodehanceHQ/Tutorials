@@ -1,25 +1,15 @@
-## Creating & Importing Classes
+### Next Steps
+To solidify your understanding, you can try creating simple classes and objects in an Ionic Angular project. Experiment with defining properties and methods, and see how objects interact with them. Once you are comfortable with these concepts, you can move on to writing actual code examples to see them in action.
 
-
-### Introduction
-Welcome to the course! In this lesson, we will explore the fundamental building blocks of writing Ionic Angular code. By the end of this tutorial, you will understand how each component works and be able to write and modify Angular code with confidence.
-
-### Stop any previously running ionic app
-```
-First, ensure that any Ionic app you may have running is stopped.
-```
-
-### Create blank project
-In your terminal or iTerm do the following:
+### Run server (for later practice)
+This command will start the Ionic development server and open the project in your default 
 ```
 cd ~/Desktop
 ionic start UserProfileApp blank --type=angular
 
-# select NgModules
-```
+# Select NgModules when prompted
 
-### Install Dependencies
-```
+# install dependencies
 npm install
 ```
 
