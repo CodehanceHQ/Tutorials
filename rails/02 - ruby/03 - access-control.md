@@ -25,38 +25,6 @@ example = PublicExample.new
 puts example.public_method  # Output: "I am a public method."
 ```
 
-### Private Methods
-```
-# - Private methods can only be called within the context of the current object.
-# - They cannot be called with an explicit receiver, even from within the same class.
-
-# 1. Create a file named `private_example.rb`.
-# 2. Add the following code to `private_example.rb`:
-
-class PrivateExample
-  def public_method
-    "I am a public method."
-  end
-
-  private
-
-  def private_method
-    "I am a private method."
-  end
-end
-
-# Create an instance of PrivateExample and call the public method
-example = PrivateExample.new
-puts example.public_method  # Output: "I am a public method."
-
-# Attempting to call the private method will raise an error
-begin
-  puts example.private_method
-rescue => e
-  puts e.message  # Output: "private method `private_method' called for #<PrivateExample:...>"
-end
-```
-
 ### Protected Methods
 ```
 # - Protected methods can be called by any instance of the defining class or its subclasses.
@@ -116,6 +84,82 @@ rescue => e
 end
 ```
 
+### Private Methods
+```
+### Private Methods
+# - Private methods can only be called within the same instance of the class.
+# - You cannot call a private method with the object name or `self.`.
+# - Private methods can only be called directly by their name within the class.
+# - Private methods cannot be called from a subclass.
+# - Private methods cannot be called from outside the class, even through composition.
+
+# 1. Create a file named `private_example.rb`.
+# 2. Add the following code to `private_example.rb`:
+
+class Parent
+  def public_method
+    "I am a public method."
+  end
+
+  def call_private_method
+    private_method
+  end
+
+  private
+
+  def private_method
+    "I am a private method."
+  end
+end
+
+class Child < Parent
+  def attempt_private_call
+    private_method
+  end
+end
+
+class Composer
+  def initialize(parent)
+    @parent = parent
+  end
+
+  def call_composed_private_method
+    @parent.private_method
+  end
+end
+
+# Create an instance of Parent and call the public method
+parent = Parent.new
+puts parent.public_method  # Output: "I am a public method."
+
+# Call the private method indirectly through another public method
+puts parent.call_private_method  # Output: "I am a private method."
+
+# Attempting to call the private method directly will raise an error
+begin
+  puts parent.private_method
+rescue => e
+  puts e.message  # Output: "private method `private_method' called for #<Parent:...>"
+end
+
+# Attempting to call the private method from a subclass will raise an error
+child = Child.new
+begin
+  puts child.attempt_private_call
+rescue => e
+  puts e.message  # Output: "private method `private_method' called for #<Child:...>"
+end
+
+# Attempting to call the private method through composition will raise an error
+composer = Composer.new(parent)
+begin
+  puts composer.call_composed_private_method
+rescue => e
+  puts e.message  # Output: "private method `private_method' called for #<Parent:...>"
+end
+```
+
+
 ### Tricky Questions to Find Bugs
 ```
 # Question 1: Given the following code, what will be the output and why?
@@ -134,8 +178,6 @@ end
 test1 = Test1.new
 puts test1.public_method
 
-# Answer: The output will be "I am private." because private methods can be called from within other methods in the same class.
-
 # Question 2: Identify the bug in the following code:
 class Test2
   def public_method
@@ -152,14 +194,6 @@ end
 test2 = Test2.new
 puts test2.public_method
 
-# Answer: The code will raise a NoMethodError because private methods cannot be called with an explicit receiver. 
-# The correct code should call private_method without `self`:
-class Test2
-  def public_method
-    private_method
-  end
-end
-
 # Question 3: Explain why the following code does not work and how to fix it:
 class Test3
   protected
@@ -172,9 +206,6 @@ end
 test3 = Test3.new
 puts test3.protected_method
 
-# Answer: The code will raise a NoMethodError because protected methods cannot be called with an explicit receiver from outside the class. 
-# The correct code should access protected_method within another method in the same class or subclass.
-
 class Test3
   def call_protected
     protected_method
@@ -184,31 +215,7 @@ end
 test3 = Test3.new
 puts test3.call_protected  # Output: "I am protected."
 
-# Question 4: What will be the output of the following code, and why?
-class Test4
-  def initialize(value)
-    @value = value
-  end
-
-  def compare_values(other)
-    self.value == other.value
-  end
-
-  protected
-
-  def value
-    @value
-  end
-end
-
-test4a = Test4.new(10)
-test4b = Test4.new(10)
-test4c = Test4.new(20)
-
-puts test4a.compare_values(test4b)  # Output: true
-puts test4a.compare_values(test4c)  # Output: false
-
-# Question 5: Identify the mistake in the following code and provide the correct version:
+# Question 4: Identify the mistake in the following code and provide the correct version:
 class Test5
   def public_method
     private_method
@@ -229,43 +236,52 @@ test5 = Test5.new
 puts test5.public_method
 puts test5.another_public_method
 
-# Answer: The code will raise a NoMethodError on the second call because private_method cannot be called with an explicit receiver.
-# The correct code should call private_method without `self` in another_public_method:
-class Test5
-  def public_method
-    private_method
+# Question 5: What will be the output of the following code, and why?
+
+class Parent
+  def initialize(name, age)
+    @name = name
+    @age = age
   end
 
-  def another_public_method
-    private_method
-  end
-end
-
-test5 = Test5.new
-puts test5.public_method         # Output: "I am private."
-puts test5.another_public_method # Output: "I am private."
-
-# Question 6: Explain why the following code snippet does not produce the expected output and correct it:
-class Test6
-  def initialize(value)
-    @value = value
-  end
-
-  def compare_values(other)
-    value == other.value
+  def compare_ages(other)
+    age_difference(other)
   end
 
   protected
 
-  def value
-    @value
+  def age
+    @age
+  end
+
+  def age_difference(other)
+    self.age - other.age
   end
 end
 
-test6a = Test6.new(10)
-test6b = Test6.new(10)
-test6c = Test6.new(20)
+class Composer
+  def initialize(parent)
+    @parent = parent
+  end
 
-puts test6a.compare_values(test6b)  # Output: true
-puts test6a.compare_values(test6c)  # Output: false
+  def access_protected_method(other)
+    @parent.age_difference(other)
+  end
+end
+
+# Create instances of Parent
+parent1 = Parent.new("Alice", 30)
+parent2 = Parent.new("Bob", 25)
+composer = Composer.new(parent1)
+
+# Compare ages directly within Parent class
+puts parent1.compare_ages(parent2)  # Output: 5
+
+# Attempt to access the protected method through composition
+begin
+  puts composer.access_protected_method(parent2)
+rescue => e
+  puts e.message  # Output: protected method `age_difference' called for #<Parent:...>
+end
+
 ```
