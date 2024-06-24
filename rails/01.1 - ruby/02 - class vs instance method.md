@@ -4,8 +4,6 @@
 ```
 # - Methods are used to perform actions and are defined within classes or modules.
 # - Ruby has two main types of methods: instance methods and class methods.
-
-Here is the course content on types of methods (instance vs. class) in Ruby, including steps and information as comments within the code snippet:
 ```
 
 ### Instance Methods
