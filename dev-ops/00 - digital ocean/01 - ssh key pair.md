@@ -12,16 +12,16 @@ SSH key pairs are crucial for secure communication in DevOps for several reasons
 ### Creating SSH Key on macOS
 
 1. Open Terminal.
-2. Generate the SSH key pair:
+2. Below replace "newproject" with the first word of your new project to personalize the key name.
+3. Generate the SSH key pair:
    `ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/newproject_rsa`
-   Replace "newproject" with the first word of your new project to personalize the key name.
-3. When prompted for a passphrase, just press Enter to skip this step (no passphrase).
-4. Add the SSH key to the ssh-agent:
+4. When prompted for a passphrase, just press Enter to skip this step (no passphrase).
+5. Add the SSH key to the ssh-agent:
    `eval "$(ssh-agent -s)"`
    `ssh-add ~/.ssh/newproject_rsa`
-5. Show the public key:
+6. Show the public key:
    `cat ~/.ssh/newproject_rsa.pub`
-6. Come out of the cat preview
+7. Come out of the cat preview
    `ctrl + c`
 
 ### Creating SSH Key on Windows
