@@ -160,3 +160,31 @@ export class HomePage {
 ```
 ionic serve
 ```
+
+### Parameter properties in Constructor
+You will notice in Angular that constructors are used slightly differetly, you don't have to define your properties separately, so here is another alternative to what we did above.
+
+Notice in this version we achieve the same steps, but by specifying all properties within constructor (...) brackets.
+
+```
+export class UserProfile {
+  constructor(
+    public username: string,
+    public email: string,
+    public age: number,
+    public isLoggedIn: boolean = false
+  ) {}
+
+  login() {
+    this.isLoggedIn = true;
+  }
+
+  logout() {
+    this.isLoggedIn = false;
+  }
+
+  updateEmail(newEmail: string) {
+    this.email = newEmail;
+  }
+}
+```
