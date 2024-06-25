@@ -13,29 +13,29 @@ SSH key pairs are crucial for secure communication in DevOps for several reasons
 
 1. Open Terminal.
 2. Generate the SSH key pair:
-   ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/newproject_rsa
+   `ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/newproject_rsa`
    Replace "newproject" with the first word of your new project to personalize the key name.
 3. When prompted for a passphrase, just press Enter to skip this step (no passphrase).
 4. Add the SSH key to the ssh-agent:
-   eval "$(ssh-agent -s)"
-   ssh-add ~/.ssh/newproject_rsa
+   `eval "$(ssh-agent -s)"`
+   `ssh-add ~/.ssh/newproject_rsa`
 5. Show the public key:
-   cat ~/.ssh/newproject_rsa.pub
+   `cat ~/.ssh/newproject_rsa.pub`
 6. Come out of the cat preview
-   ctrl + c
+   `ctrl + c`
 
 ### Creating SSH Key on Windows
 
 1. Open Command Prompt or PowerShell.
 2. Generate the SSH key pair:
-   ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f C:\Users\your_username\.ssh\newproject_rsa
+   `ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f C:\Users\your_username\.ssh\newproject_rsa`
    Replace "newproject" with the first word of your new project to personalize the key name.
 3. When prompted for a passphrase, just press Enter to skip this step (no passphrase).
 4. Add the SSH key to the ssh-agent:
-   eval "$(ssh-agent -s)"
-   ssh-add C:\Users\your_username\.ssh\newproject_rsa
+   `eval "$(ssh-agent -s)"`
+   `ssh-add C:\Users\your_username\.ssh\newproject_rsa`
 5. Show the public key:
-   type C:\Users\your_username\.ssh\newproject_rsa.pub
+   `type C:\Users\your_username\.ssh\newproject_rsa.pub`
 
 ### Listing SSH Keys
 

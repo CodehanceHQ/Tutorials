@@ -3,11 +3,13 @@
 Digital Ocean is a cloud infrastructure provider that offers scalable compute platforms for developers. It is particularly popular for DevOps tasks because it allows for quick and easy deployment of applications, continuous integration and deployment (CI/CD) pipelines, and infrastructure management through its user-friendly interface and robust API. With Digital Ocean, developers can efficiently manage their infrastructure, deploy and scale applications, and automate development workflows.
 
 ### Instructions for Creating an Account
+```
 1. Visit the Digital Ocean website: https://www.digitalocean.com
 2. Click on the "Sign Up" button.
 3. Enter your email address and create a password, or sign up using GitHub or Google.
 4. Verify your email address by clicking on the link sent to your email.
 5. Log in to your newly created account.
+```
 
 ### Inside Digital Ocean Dashboard
 
