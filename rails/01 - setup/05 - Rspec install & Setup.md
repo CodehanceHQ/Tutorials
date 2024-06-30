@@ -139,6 +139,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.fixture_paths = [
+    Rails.root.join('spec/fixtures')
+  ]
+
   # Include Devise test helpers for request specs
   config.include Devise::Test::IntegrationHelpers, type: :request
 
