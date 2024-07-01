@@ -1,3 +1,7 @@
+### Install Ionic
+```
+npm install -g @ionic/cli
+```
 
 ### Generate a new Ionic application with a blank template
 ```

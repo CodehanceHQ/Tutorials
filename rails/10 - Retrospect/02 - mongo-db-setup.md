@@ -81,3 +81,33 @@ rails server
 ```
 rspec
 ```
+
+### Signup mutations
+```
+# run signup
+
+mutation {
+  signUp(input: {
+    fullName: "John Doe",
+    email: "example@kernuo.com",
+    password: "PAssword@123",
+    confirmPassword: "PAssword@123",
+    telephone: "1234567890"
+  }) {
+    data {
+      id
+      fullName
+      email
+      telephone
+    }
+    message,
+    errors,
+    httpStatus
+  }
+}
+```
+
+### Inspect mongo compass
+```
+# inspect to  see your record as a document
+```
