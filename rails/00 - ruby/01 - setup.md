@@ -22,6 +22,9 @@ brew link --overwrite openssl@1.1
 # Add OpenSSL to your PATH
 echo 'export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"' >> ~/.zshrc
 
+# refresh your shell
+source ~/.zshrc
+
 # Install Ruby 3.3.1 with OpenSSL
 rvm install 3.3.1 --with-openssl-dir=$(brew --prefix openssl@1.1)
 
