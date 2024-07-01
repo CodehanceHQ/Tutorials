@@ -5,6 +5,10 @@ npm install -g @ionic/cli
 
 ### Generate a new Ionic application with a blank template
 ```
+# change to desktop
+cd ~/Desktop
+
+# start ionic app
 ionic start myApp blank --type=angular --capacitor
 
 npm install -g @angular/cli
