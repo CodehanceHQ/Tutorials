@@ -1,4 +1,4 @@
-```I this project we are going to use a test framework called cypress instead of the default test framework jasmine which comes with ionic installation.
+I this project we are going to use a test framework called cypress instead of the default test framework jasmine which comes with ionic installation.
 
 cypress is more suitable and more pleasant to work with.```
 
@@ -22,5 +22,10 @@ test: {...}
 ### Step 4: Remove All .spec.ts Files
 ```
 cd into you project
+
+# run in termial
 find src -name "*.spec.ts" -type f -delete
+
+# it is ok if you see:
+find: src: No such file or directory
 ```

@@ -1,4 +1,4 @@
-### Step 1: Add to dev dependencies
+### Step 1: Add to dev dependencies in Package.json
 ```
 ...
 "devDependencies": {
@@ -15,7 +15,7 @@
 
 ### Step 2: Install
 ```
-bundle install
+npm install
 ```
 
 ### Step 3: Update package.json
